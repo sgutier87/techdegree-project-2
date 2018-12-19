@@ -16,6 +16,8 @@ FSJS project 2 - List Filter and Pagination
    will only be used inside of a function, then it can be locally 
    scoped to that function.
 ***/
+const ul = document.querySelector('.student-list');
+const studentList = ul.children;
 
 
 
@@ -34,6 +36,17 @@ FSJS project 2 - List Filter and Pagination
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
+const showPage = (list, page) => {
+   for (let i = 0; i < list.length; i += 1) {
+      if (i >= 0 && i <= page) {
+         list[i].style.display = '';
+      } else {
+         list[i].style.display = 'none';
+      }
+   }
+}
+
+showPage(studentList, 9);
 
 
 
@@ -48,3 +61,7 @@ FSJS project 2 - List Filter and Pagination
 
 
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
+
+
+
+

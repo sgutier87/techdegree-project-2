@@ -59,6 +59,10 @@ showPage(studentList, 1);
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
+const appendPageLinks = (list) => {
+   const pagesNeeded = list.length / studentPerPage;
+   const div =
+}
 
 
 

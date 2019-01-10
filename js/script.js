@@ -39,6 +39,7 @@ const studentList = ul.children;
 const showPage = (list, page) => {
    for (let i = 0; i < list.length; i += 1) {
       const numberPerPage = 10;
+      
       if (i >= 0 && i <= page) {
          list[i].style.display = '';
       } else {
@@ -47,7 +48,7 @@ const showPage = (list, page) => {
    }
 }
 
-showPage(studentList, 9);
+showPage(studentList, 1);
 
 
 

@@ -38,8 +38,11 @@ const studentList = ul.children;
 ***/
 const showPage = (list, page) => {
    for (let i = 0; i < list.length; i += 1) {
+<<<<<<< HEAD
       const numberPerPage = 10;
       
+=======
+>>>>>>> parent of 9d81785... Update script.js
       if (i >= 0 && i <= page) {
          list[i].style.display = '';
       } else {
@@ -48,7 +51,7 @@ const showPage = (list, page) => {
    }
 }
 
-showPage(studentList, 1);
+showPage(studentList, 9);
 
 
 

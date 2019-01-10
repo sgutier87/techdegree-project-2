@@ -50,7 +50,6 @@ const showPage = (list, page) => {
    }
 }
 
-showPage(studentList, 1);
 
 
 
@@ -61,8 +60,31 @@ showPage(studentList, 1);
 ***/
 const appendPageLinks = (list) => {
    const pagesNeeded = list.length / studentPerPage;
+   const pageDiv = document.querySelector('.page');
+   const newDiv = document.createElement('div');
+   newDiv.className = 'pagination';
+   pageDiv.appendChild(newDiv);
+   const ul = document.createElement('ul');
+   newDiv.appendChild(ul);
+
+   for (let i = 0; i < pagesNeeded; i += 1) {
+      const currentPage = i + 1;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.textContent = currentPage;
+      a.href = '#';
+      li.appendChild(a);
+      ul.appendChild(li);
+      
+      a.addEventListener('click', (e) => {
+         showPage(studentList, currentPage);
+         e.target.className = 'active';
+      });
+   }
 }
 
+showPage(studentList, 1);
+appendPageLinks(studentList);
 
 
 

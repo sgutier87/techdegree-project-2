@@ -77,7 +77,13 @@ const appendPageLinks = (list) => {
       ul.appendChild(li);
       
       a.addEventListener('click', (e) => {
+         const paginationLinks = document.querySelectorAll('.pagination a');
          showPage(studentList, currentPage);
+         
+         for (let i = 0; i < paginationLinks.length; i += 1) {
+            paginationLinks[i].className = '';
+         }
+         
          e.target.className = 'active';
       });
    }

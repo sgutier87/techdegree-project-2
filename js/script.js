@@ -61,7 +61,6 @@ showPage(studentList, 1);
 ***/
 const appendPageLinks = (list) => {
    const pagesNeeded = list.length / studentPerPage;
-   const div =
 }
 
 

@@ -48,10 +48,12 @@ const appendPageLinks = (list) => {
       a.href = '#';
       li.appendChild(a);
       ul.appendChild(li);
+      //Sets className of first 'a' link to 'active' for hightlight
+      const paginationLinks = document.querySelectorAll('.pagination a');
+      paginationLinks[0].className = 'active';
       
       //Calls showPage() when 'a' link is clicked on
       a.addEventListener('click', (e) => {
-         const paginationLinks = document.querySelectorAll('.pagination a');
          showPage(studentList, currentPage);
          
          //Loops over each link to remove className

@@ -82,20 +82,35 @@ const createSeach = (list) => {
    searchDiv.appendChild(button);
 
    button.addEventListener('click', (e) => {
-      const search = input.value.toLowerCase();
 
       for (let i = 0; i < list.length; i += 1) {
+         const search = input.value.toLowerCase();
          const studentDiv = list[i].firstElementChild.children;
          const studentName = studentDiv[1].textContent;
          const studentEmail = studentDiv[2].textContent;
-         console.log(studentName);
          
-         // if (search == list[i].h3.textContent) {
-         //    list[i].style.display = '';
-         // }
-         // else {
-         //    list[i].style.display = 'none';
-         // }
+         if (studentName.includes(search) || studentEmail.includes(search)) {
+            list[i].style.display = '';
+         }
+         else {
+            list[i].style.display = 'none';
+         }
+      }
+   });
+
+   input.addEventListener('keyup', (e) => {
+      for (let i = 0; i < list.length; i += 1) {
+         const search = input.value.toLowerCase();
+         const studentDiv = list[i].firstElementChild.children;
+         const studentName = studentDiv[1].textContent;
+         const studentEmail = studentDiv[2].textContent;
+         
+         if (studentName.includes(search) || studentEmail.includes(search)) {
+            list[i].style.display = '';
+         }
+         else {
+            list[i].style.display = 'none';
+         }
       }
    });
 }

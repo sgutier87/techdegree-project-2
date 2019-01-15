@@ -7,6 +7,7 @@ FSJS project 2 - List Filter and Pagination
 const ul = document.querySelector('.student-list');
 const studentList = ul.children;
 const studentPerPage = 10;
+const headerDiv = document.querySelector('.page-header');
 
 
 
@@ -67,9 +68,28 @@ const appendPageLinks = (list) => {
    }
 }
 
+//Creates a search bar
+const createSeach = () => {
+   const searchDiv = document.createElement('div');
+   const input = document.createElement('input');
+   const button = document.createElement('button');
+
+   searchDiv.className = 'student-search';
+   headerDiv.appendChild(searchDiv);
+   input.placeholder = 'Search for students...';
+   searchDiv.appendChild(input);
+   button.textContent = 'Search';
+   searchDiv.appendChild(button);
+
+   button.addEventListener('click', (e) => {
+      
+   });
+}
+
 //Starts load on page 1
 showPage(studentList, 1);
 appendPageLinks(studentList);
+createSeach();
 
 
 

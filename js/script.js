@@ -69,7 +69,7 @@ const appendPageLinks = (list) => {
 }
 
 //Creates a search bar
-const createSeach = () => {
+const createSeach = (list) => {
    const searchDiv = document.createElement('div');
    const input = document.createElement('input');
    const button = document.createElement('button');
@@ -82,14 +82,28 @@ const createSeach = () => {
    searchDiv.appendChild(button);
 
    button.addEventListener('click', (e) => {
-      
+      const search = input.value.toLowerCase();
+
+      for (let i = 0; i < list.length; i += 1) {
+         const studentDiv = list[i].firstElementChild.children;
+         const studentName = studentDiv[1].textContent;
+         const studentEmail = studentDiv[2].textContent;
+         console.log(studentName);
+         
+         // if (search == list[i].h3.textContent) {
+         //    list[i].style.display = '';
+         // }
+         // else {
+         //    list[i].style.display = 'none';
+         // }
+      }
    });
 }
 
 //Starts load on page 1
 showPage(studentList, 1);
 appendPageLinks(studentList);
-createSeach();
+createSeach(studentList);
 
 
 

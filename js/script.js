@@ -103,7 +103,8 @@ const createSeachBar = (list) => {
    }
 
    const removePageLinks = () => {
-      const pageLinksUl = document.querySelector('.pagingation ul');
+      const paginationDiv = document.querySelector('.pagination');
+      const pageLinksUl = paginationDiv.firstChild;
       
       while (pageLinksUl.firstChild) {
          pageLinksUl.removeChild(pageLinksUl.firstChild);
@@ -116,6 +117,7 @@ const createSeachBar = (list) => {
    });
 
    input.addEventListener('keyup', (e) => {
+      removePageLinks();
       searchFilter();
    });
 }

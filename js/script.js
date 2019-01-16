@@ -69,7 +69,7 @@ const appendPageLinks = (list) => {
 }
 
 //Creates a search bar
-const createSeach = (list) => {
+const createSeachBar = (list) => {
    const searchDiv = document.createElement('div');
    const input = document.createElement('input');
    const button = document.createElement('button');
@@ -81,7 +81,8 @@ const createSeach = (list) => {
    button.textContent = 'Search';
    searchDiv.appendChild(button);
 
-   button.addEventListener('click', (e) => {
+   const searchFilter = () => {
+      let filterdList = [];
 
       for (let i = 0; i < list.length; i += 1) {
          const search = input.value.toLowerCase();
@@ -91,34 +92,29 @@ const createSeach = (list) => {
          
          if (studentName.includes(search) || studentEmail.includes(search)) {
             list[i].style.display = '';
+            filterdList.push(list[i]);
          }
          else {
             list[i].style.display = 'none';
          }
       }
+      
+      appendPageLinks(filterdList);
+   }
+
+   button.addEventListener('click', (e) => {
+      searchFilter();
    });
 
    input.addEventListener('keyup', (e) => {
-      for (let i = 0; i < list.length; i += 1) {
-         const search = input.value.toLowerCase();
-         const studentDiv = list[i].firstElementChild.children;
-         const studentName = studentDiv[1].textContent;
-         const studentEmail = studentDiv[2].textContent;
-         
-         if (studentName.includes(search) || studentEmail.includes(search)) {
-            list[i].style.display = '';
-         }
-         else {
-            list[i].style.display = 'none';
-         }
-      }
+      searchFilter();
    });
 }
 
 //Starts load on page 1
 showPage(studentList, 1);
 appendPageLinks(studentList);
-createSeach(studentList);
+createSeachBar(studentList);
 
 
 

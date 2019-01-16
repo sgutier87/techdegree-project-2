@@ -98,11 +98,20 @@ const createSeachBar = (list) => {
             list[i].style.display = 'none';
          }
       }
-      
+
       appendPageLinks(filterdList);
    }
 
+   const removePageLinks = () => {
+      const pageLinksUl = document.querySelector('.pagingation ul');
+      
+      while (pageLinksUl.firstChild) {
+         pageLinksUl.removeChild(pageLinksUl.firstChild);
+      }
+   }
+
    button.addEventListener('click', (e) => {
+      removePageLinks();
       searchFilter();
    });
 

@@ -104,11 +104,7 @@ const createSeachBar = (list) => {
 
    const removePageLinks = () => {
       const paginationDiv = document.querySelector('.pagination');
-      const pageLinksUl = paginationDiv.firstChild;
-      
-      while (pageLinksUl.firstChild) {
-         pageLinksUl.removeChild(pageLinksUl.firstChild);
-      }
+      paginationDiv.parentNode.removeChild(paginationDiv);
    }
 
    button.addEventListener('click', (e) => {

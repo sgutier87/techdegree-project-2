@@ -8,6 +8,7 @@ const ul = document.querySelector('.student-list');
 const studentList = ul.children;
 const studentPerPage = 10;
 const headerDiv = document.querySelector('.page-header');
+const pageDiv = document.querySelector('.page');
 
 
 
@@ -32,12 +33,11 @@ const showPage = (list, page) => {
 const appendPageLinks = (list) => {
    //Creates 'newDiv' and appends 'ul' to it
    const pagesNeeded = list.length / studentPerPage;
-   const pageDiv = document.querySelector('.page');
-   const newDiv = document.createElement('div');
-   newDiv.className = 'pagination';
-   pageDiv.appendChild(newDiv);
+   const paginationDiv = document.createElement('div');
+   paginationDiv.className = 'pagination';
+   pageDiv.appendChild(paginationDiv);
    const ul = document.createElement('ul');
-   newDiv.appendChild(ul);
+   paginationDiv.appendChild(ul);
 
    //Loops over each page needed, creating 'li' and 'a' links for each
    //Appends each 'li' to 'ul' 
@@ -68,7 +68,7 @@ const appendPageLinks = (list) => {
    }
 }
 
-//Creates a search bar
+//Creates a searchbar
 const createSeachBar = (list) => {
    const searchDiv = document.createElement('div');
    const input = document.createElement('input');
@@ -81,9 +81,12 @@ const createSeachBar = (list) => {
    button.textContent = 'Search';
    searchDiv.appendChild(button);
 
+   //Adds fucntionality to searchbar
    const searchFilter = () => {
       let filterdList = [];
+      let hiddenList = [];
 
+      //Loops over list given and hides students not matching users input for name or email
       for (let i = 0; i < list.length; i += 1) {
          const search = input.value.toLowerCase();
          const studentDiv = list[i].firstElementChild.children;
@@ -96,17 +99,31 @@ const createSeachBar = (list) => {
          }
          else {
             list[i].style.display = 'none';
+            hiddenList.push(list[i]);
          }
       }
 
+      //If number of hidden students added to hiddenList equales students in studentList 'No result' message appears
+      if (hiddenList.length == studentList.length) {
+         const noMatchDiv = document.createElement('div');
+         const message = document.createElement('h1');
+         noMatchDiv.className = 'noMatch';
+         message.textContent = 'No results';
+         noMatchDiv.appendChild(message);
+         pageDiv.appendChild(noMatchDiv);
+      } 
+
+      showPage(filterdList, 1);
       appendPageLinks(filterdList);
    }
 
+   //Function for removeing page links at start
    const removePageLinks = () => {
       const paginationDiv = document.querySelector('.pagination');
       paginationDiv.parentNode.removeChild(paginationDiv);
    }
 
+   //EventListeners for searchbar
    button.addEventListener('click', (e) => {
       removePageLinks();
       searchFilter();

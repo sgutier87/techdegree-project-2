@@ -56,15 +56,18 @@ const appendPageLinks = (list) => {
       //Calls showPage() when 'a' link is clicked on
       a.addEventListener('click', (e) => {
          showPage(studentList, currentPage);
-         
-         //Loops over each link to remove className
-         for (let i = 0; i < paginationLinks.length; i += 1) {
-            paginationLinks[i].className = '';
-         }
+         removeActive(paginationLinks);
          
          //Adds 'active' className to target link for highlighting from CSS
          e.target.className = 'active';
       });
+   }
+}
+
+//Loops over each link to remove className
+const removeActive = (list) => {
+   for (let i = 0; i < list.length; i += 1) {
+      list[i].className = '';
    }
 }
 

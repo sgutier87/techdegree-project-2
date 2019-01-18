@@ -49,26 +49,29 @@ const appendPageLinks = (list) => {
       a.href = '#';
       li.appendChild(a);
       ul.appendChild(li);
-      //Sets className of first 'a' link to 'active' for hightlight
-      const paginationLinks = document.querySelectorAll('.pagination a');
-      paginationLinks[0].className = 'active';
-      
-      //Calls showPage() when 'a' link is clicked on
-      a.addEventListener('click', (e) => {
-         showPage(studentList, currentPage);
-         removeActive(paginationLinks);
-         
-         //Adds 'active' className to target link for highlighting from CSS
-         e.target.className = 'active';
-      });
    }
+   
+   //Sets className of first 'a' link to 'active' for hightlight
+   const paginationLinks = document.querySelectorAll('.pagination a');
+   paginationLinks[0].className = 'active';
+
+   //Calls showPage() when 'a' link is clicked on
+   ul.addEventListener('click', (e) => {
+      if (e.target.tagName == 'A') {
+         showPage(studentList, e.target.textContent);
+         makeActive(paginationLinks, e);
+      } 
+   });
 }
 
 //Loops over each link to remove className
-const removeActive = (list) => {
+const makeActive = (list, target) => {
    for (let i = 0; i < list.length; i += 1) {
       list[i].className = '';
    }
+
+   //Adds 'active' className to target link for highlighting from CSS
+   target.target.className = 'active';
 }
 
 //Creates a searchbar

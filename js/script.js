@@ -60,7 +60,7 @@ const appendPageLinks = (list) => {
       if (e.target.tagName == 'A') {
          showPage(studentList, e.target.textContent);
          makeActive(paginationLinks, e);
-      } 
+      }
    });
 }
 

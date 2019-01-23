@@ -29,6 +29,7 @@ const showPage = (list, page) => {
    }
 }
 
+
 //Adds page links to page depending on how many pages are needed
 const appendPageLinks = (list) => {
    //Creates 'newDiv' and appends 'ul' to it
@@ -64,6 +65,7 @@ const appendPageLinks = (list) => {
    });
 }
 
+
 //Creates a searchbar
 const createSeachBar = (list) => {
    const searchDiv = document.createElement('div');
@@ -96,38 +98,57 @@ const createSeachBar = (list) => {
             list[i].style.display = 'none';
          }
       }
-
+      
       //Catches error if there are no items in filterdList and displays 'No Results' message
       try {
          showPage(filterdList, 1);
          appendPageLinks(filterdList);
       } catch {
-         const noMatchDiv = document.createElement('div');
-         const message = document.createElement('h1');
-         noMatchDiv.className = 'noMatch';
-         message.textContent = 'No results';
-         noMatchDiv.appendChild(message);
-         pageDiv.appendChild(noMatchDiv);
+         const noMatchDiv = document.querySelector('.noMatch');
+         noMatchDiv.style.display = '';
       }
-   }
-
-   //Function for removeing page links at start
-   const removePageLinks = () => {
-      const paginationDiv = document.querySelector('.pagination');
-      paginationDiv.parentNode.removeChild(paginationDiv);
    }
 
    //EventListeners for searchbar
    button.addEventListener('click', (e) => {
       removePageLinks();
       searchFilter();
+      hideNoMatchDiv();
    });
 
    input.addEventListener('keyup', (e) => {
       removePageLinks();
       searchFilter();
+      hideNoMatchDiv();
    });
 }
+
+
+//Creates a div with a 'No results' message and hides it
+const makeNoMatchDiv = () => {
+   const noMatchDiv = document.createElement('div');
+   const message = document.createElement('h1');
+   noMatchDiv.className = 'noMatch';
+   message.textContent = 'No results';
+   noMatchDiv.appendChild(message);
+   pageDiv.appendChild(noMatchDiv);
+   noMatchDiv.style.display = 'none';
+}
+
+
+//hides NoMatchDiv
+const hideNoMatchDiv = () => {
+   const noMatchDiv = document.querySelector('.noMatch');
+   noMatchDiv.style.display = 'none';
+}
+
+
+//Function for removeing page links at start
+const removePageLinks = () => {
+   const paginationDiv = document.querySelector('.pagination');
+   paginationDiv.parentNode.removeChild(paginationDiv);
+}
+
 
 //Loops over each link to remove className
 const makeActive = (list, target) => {
@@ -139,10 +160,12 @@ const makeActive = (list, target) => {
    target.target.className = 'active';
 }
 
+
 //Starts load on page 1
 showPage(studentList, 1);
 appendPageLinks(studentList);
 createSeachBar(studentList);
+makeNoMatchDiv();
 
 
 

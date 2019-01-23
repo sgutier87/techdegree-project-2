@@ -64,16 +64,6 @@ const appendPageLinks = (list) => {
    });
 }
 
-//Loops over each link to remove className
-const makeActive = (list, target) => {
-   for (let i = 0; i < list.length; i += 1) {
-      list[i].className = '';
-   }
-
-   //Adds 'active' className to target link for highlighting from CSS
-   target.target.className = 'active';
-}
-
 //Creates a searchbar
 const createSeachBar = (list) => {
    const searchDiv = document.createElement('div');
@@ -90,7 +80,6 @@ const createSeachBar = (list) => {
    //Adds fucntionality to searchbar
    const searchFilter = () => {
       let filterdList = [];
-      let hiddenList = [];
 
       //Loops over list given and hides students not matching users input for name or email
       for (let i = 0; i < list.length; i += 1) {
@@ -105,22 +94,21 @@ const createSeachBar = (list) => {
          }
          else {
             list[i].style.display = 'none';
-            hiddenList.push(list[i]);
          }
       }
 
-      //If number of hidden students added to hiddenList equales students in studentList 'No result' message appears
-      if (hiddenList.length == studentList.length) {
+      //Catches error if there are no items in filterdList and displays 'No Results' message
+      try {
+         showPage(filterdList, 1);
+         appendPageLinks(filterdList);
+      } catch {
          const noMatchDiv = document.createElement('div');
          const message = document.createElement('h1');
          noMatchDiv.className = 'noMatch';
          message.textContent = 'No results';
          noMatchDiv.appendChild(message);
          pageDiv.appendChild(noMatchDiv);
-      } 
-
-      showPage(filterdList, 1);
-      appendPageLinks(filterdList);
+      }
    }
 
    //Function for removeing page links at start
@@ -139,6 +127,16 @@ const createSeachBar = (list) => {
       removePageLinks();
       searchFilter();
    });
+}
+
+//Loops over each link to remove className
+const makeActive = (list, target) => {
+   for (let i = 0; i < list.length; i += 1) {
+      list[i].className = '';
+   }
+
+   //Adds 'active' className to target link for highlighting from CSS
+   target.target.className = 'active';
 }
 
 //Starts load on page 1

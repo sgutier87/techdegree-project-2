@@ -112,14 +112,14 @@ const createSeachBar = (list) => {
    //EventListeners for searchbar
    button.addEventListener('click', (e) => {
       removePageLinks();
-      searchFilter();
       hideNoMatchDiv();
+      searchFilter();
    });
 
    input.addEventListener('keyup', (e) => {
       removePageLinks();
-      searchFilter();
       hideNoMatchDiv();
+      searchFilter();
    });
 }
 
@@ -129,7 +129,7 @@ const makeNoMatchDiv = () => {
    const noMatchDiv = document.createElement('div');
    const message = document.createElement('h1');
    noMatchDiv.className = 'noMatch';
-   message.textContent = 'No results';
+   message.textContent = 'No results found';
    noMatchDiv.appendChild(message);
    pageDiv.appendChild(noMatchDiv);
    noMatchDiv.style.display = 'none';
